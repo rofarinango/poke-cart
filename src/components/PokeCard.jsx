@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import apiCalls from "../api";
 import styled from 'styled-components';
 
@@ -28,26 +29,35 @@ const PokeCardContainer = styled.div`
     max-width: 100%;
     max-height: 80%;
   }
+
+  :hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
 `;
 export function PokeCard({name}){
     const [pokemon, setPokemon] = useState({});
-    
+    const calledAPI = useRef(false);
+    const navigate = useNavigate();
 
-    useEffect(function(){
+    useEffect(() => {
+      if(!calledAPI.current){
+        calledAPI.current = true;
         apiCalls.getPokemonByName({name})
             .then(pokemon => {
                 setPokemon(pokemon);
-            });
+            }).catch(console.error);
+      }
     }, [name]);
-    
+
 
     return(
-        <>
+        <div onClick={()=>navigate(`/${pokemon.name.toLowerCase()}`)}>
              <PokeCardContainer>
                 <h3>{pokemon.name}</h3>
                 <img src={pokemon.imgURL} alt={pokemon.name} />
                 <h3>{pokemon.type}</h3>
             </PokeCardContainer>
-        </>
+        </div>
     )
 }

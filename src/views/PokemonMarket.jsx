@@ -19,6 +19,8 @@ const PokemonMarket = () => {
     const [pokemons, setPokemons] = useState([]);
     const calledAPI = useRef(false);
 
+
+
     useEffect(()=>{
         if(!calledAPI.current){
             calledAPI.current = true;
@@ -31,7 +33,10 @@ const PokemonMarket = () => {
         <div>
            <CardContainer>
             {pokemons.map((singlePokemon) => (
-                <PokeCard name={singlePokemon.name}></PokeCard>
+                <PokeCard
+                    name={singlePokemon.name}
+                    key={singlePokemon.name}
+                ></PokeCard>
             ))}
             </CardContainer>
         </div>
