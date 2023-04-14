@@ -5,8 +5,9 @@ import {PokemonDetail, PokemonMarket, PokemonCart} from '../views';
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      
       <BrowserRouter>
+        <NavBar/>
         <Routes>
             <Route path="/" element={<PokemonMarket/>}/>
             <Route path="/:pokemon" element={<PokemonDetail/>}/>
