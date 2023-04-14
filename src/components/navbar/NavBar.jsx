@@ -31,7 +31,7 @@ const NavBar = ()=> {
                     <Logo />
                 </LogoContainer>
                 <PokeballContainer>
-                    <Pokeball />
+                    <Pokeball collectionSize={20}/>
                 </PokeballContainer>
             </NavContainer>
         </>
