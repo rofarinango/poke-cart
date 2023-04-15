@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import pokeball from '../../pokeball.png';
 
 const PokeballIcon = styled.img`
   width: 40px;
+  cursor: pointer;
 `;
 
 const CollectionSize = styled.span`
@@ -25,9 +27,12 @@ const CollectionSize = styled.span`
 
 
 const Pokeball = ({ collectionSize }) => {
+  const navigate = useNavigate();
   return (
     <>
-        <PokeballIcon src={pokeball} alt="pokeball icon" />
+        <PokeballIcon 
+          onClick={()=>navigate('/collection')}
+          src={pokeball} alt="pokeball icon" />
         <CollectionSize>{collectionSize}</CollectionSize>
     </>
       

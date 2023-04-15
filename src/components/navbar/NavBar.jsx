@@ -23,7 +23,8 @@ const PokeballContainer = styled.div`
 `;
 
 
-const NavBar = ()=> {
+const NavBar = ({collection})=> {
+    const collectionSize = collection.length;
     return (
         <>
             <NavContainer>
@@ -31,7 +32,7 @@ const NavBar = ()=> {
                     <Logo />
                 </LogoContainer>
                 <PokeballContainer>
-                    <Pokeball collectionSize={20}/>
+                    <Pokeball collectionSize={collectionSize}/>
                 </PokeballContainer>
             </NavContainer>
         </>

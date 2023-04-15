@@ -43,8 +43,6 @@ const getPokemonByName = async({name}) => {
                         speed: speed
                     }
                 };
-
-                console.log(pokemon)
                 return pokemon;
             });
 }

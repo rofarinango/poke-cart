@@ -42,9 +42,14 @@ const AddButton = styled.button`
   &:hover {
     background-color: #ff8533;
   }
+
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
 `;
 
-const PokemonDetail = () => {
+const PokemonDetail = ({ collection, addToCollection }) => {
   const { pokemon } = useParams();
   const [pokemonData, setPokemonData] = useState();
 
@@ -53,6 +58,10 @@ const PokemonDetail = () => {
       .then(pokemon => setPokemonData(pokemon))
       .catch(console.error);
   }, [pokemon]);
+
+  const handleAddToCollection = () => {
+    addToCollection(pokemonData.name);
+  };
 
   return (
     <Container>
@@ -70,9 +79,9 @@ const PokemonDetail = () => {
           <div>Speed: {pokemonData.stats.defense}</div>
         </Card>
       )}
-      <AddButton>Add to Collection</AddButton>
-    </Container>
-  );
-}
+      <AddButton disabled={collection.includes(pokemonData?.name)} onClick={() => handleAddToCollection(pokemonData?.name)}>
+        {collection.includes(pokemonData?.name) ? 'Already in Collection' : 'Add to Collection'}
+      </AddButton>
+    </Container>)}
 
 export default PokemonDetail;
